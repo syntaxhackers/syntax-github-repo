@@ -2,35 +2,41 @@ from flask import Flask, send_from_directory, render_template, request, session,
 app = Flask(__name__)
 app.secret_key = 'DFGDFHGSRGFYDTGFSDFJHHGDSHGFSGHJHGDFZSDJTYHTSGRASKUEYTAHGRAKUOUIYSHTAGSUROIUTSGSYIUY46'
 
+getUserFromPassword = {
+	'synt': 'david',
+	'syntaxe': 'Ethan'
+}
+
+def red(where):
+	return redirect(where, 302)
+
 @app.route('/')
 def landing():
 	if 'user' not in session:
-		return redirect('/login', 302)
+		return red('/login')
+	user = session['user']
+	return render_template("index.html", logged=user)
 
-	#return error("Service is down right now will be back up soon doing some stuff.");
-
-@app.route('/login')
+@app.route('/login', methods=['GET'])
 def login():
-	#return redirect('/error?message=Service is down right now will be back up soon you cannot login right now ok!')
-	return render_template("index.html")
-
-@app.route('/dologin')
-def dologin():
-	session['user'] = "logged in!"
-	return "you've logged in with hacks!"
-
-@app.route('/dologout')
-def dologout():
-	session.pop('user')
-	return "you've logged out with hacks!"
+	err = None
+	if ('err' in request.args):
+		err = request.args['err']
+	return render_template("login.html", err=err)
 
 @app.route('/challenge', methods=["POST"])
 def challenge():
 	passw = request.form["pass"]
 	if passw == "syntaxe" or passw == "synt":
-		return render_template('syntax.html')
-	return "Sorry, go back, or else die! You're not allowed here.<br>Oh wait... if you don't know what is after happening just simply <a href='/'>click here</a> to get back to somewhere which I am no longer responsible for!"
+		session['user'] = getUserFromPassword[passw]
+		return red('/')
+	else:
+		return red('/login?err=1')
 
+@app.route('/fl')
+def forcelogout():
+	session.pop('user')
+	return "you've forced logouted! <a href='/'>Click here to go back!</a>"
 
 
 @app.route('/static/<path:path>')

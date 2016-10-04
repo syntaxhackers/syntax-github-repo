@@ -1,1 +1,1 @@
-web: gunicorn syntaxapp:app --log-file -
+web: gunicorn s:app --log-file -
