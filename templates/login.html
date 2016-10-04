@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Syntax - the legion of h****** </title>
-    <link rel="stylesheet" href="static/css/main.css">
+    <title> Syntax - qdu hucyak ab doxgunp </title>
+    <link rel="stylesheet" href="static/css/login.css">
 </head>
 <body>
     <div id="loginbox">
-        <h1> Huh, this page is locked... Only the elite h****** can enter! </h1>
+        <h1> Enter the lokuh... </h1>
         {% if err == "1" %}
-        	There's been an error here it is: <b> Password is wrong why don't you try it again! </b>
+        	<br>Error: <b style="color: red; background-color: white;"> Password incorrect! </b><br>
         {% endif %}
-        <form action="/challenge" method="post"><input type="password" name="pass" placeholder="PASSWORD"></form>
+        <br>
+        <form action="/challenge" method="post">
+        	<input type="password" name="pass" placeholder="Type your loppsanz">
+        	<input type="submit" value="Hacyk">
+        </form>
     </div>
 </body>
 </html>

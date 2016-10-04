@@ -1,0 +1,48 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: blue;
+}
+
+#loginbox {
+    background-color: deepskyblue;
+    width: 460px;
+    height: 160px;
+    margin: calc(50vh - 102px) auto;
+    padding: 20px;
+    border: 2px solid black;
+    color: white;
+}
+
+#loginbox h1 {
+    font-size: 24px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+}
+
+#loginbox input {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    padding: 10px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    outline: 0;
+    transition: background-color 0.3s;
+}
+
+#loginbox input:active {
+    border: 1px solid white;
+}
+
+#loginbox input[type="submit"]:hover {
+    background-color: #EEE;
+}
+
+#loginbox input[type="submit"]:active {
+    background-color: #AAA;
+}

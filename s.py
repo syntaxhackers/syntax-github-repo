@@ -3,9 +3,16 @@ app = Flask(__name__)
 app.secret_key = 'DFGDFHGSRGFYDTGFSDFJHHGDSHGFSGHJHGDFZSDJTYHTSGRASKUEYTAHGRAKUOUIYSHTAGSUROIUTSGSYIUY46'
 
 getUserFromPassword = {
-	'synt': 'david',
-	'syntaxe': 'Ethan'
+	'synt': 'Espix',
+	'syntaxe': 'Itane'
 }
+
+groups = [
+	{
+		"title": "CXX",
+		"who": ['Espix', 'Itane']
+	}
+]
 
 def red(where):
 	return redirect(where, 302)
@@ -15,7 +22,7 @@ def landing():
 	if 'user' not in session:
 		return red('/login')
 	user = session['user']
-	return render_template("index.html", logged=user)
+	return render_template("index.html", username=user, groups=groups)
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -37,6 +44,19 @@ def challenge():
 def forcelogout():
 	session.pop('user')
 	return "you've forced logouted! <a href='/'>Click here to go back!</a>"
+
+@app.route('/logout')
+def logout():
+	session.pop('user')
+	return red('/')
+
+@app.route('/group', methods=["GET"])
+def group():
+	if 'user' not in session:
+		return red('/login')
+	user = session['user']
+	gr = request.args["cnael"]
+	return render_template("group.html", username=user, group=gr)
 
 
 @app.route('/static/<path:path>')
