@@ -51,11 +51,20 @@ def logout():
 def group():
 	if 'user' not in session:
 		return red('/login')
+	gr = request.args["cnael"]
+	#return render_template("group.html", username=user, group=gr)
+	return "This page is deprecated! You will be able to continue to view this page for a while by <a href='/group.deprecated?cnael=" + gr + "'>clicking here</a>!"
+
+@app.route('/group.deprecated', methods=["GET"])
+def groupd():
+	if 'user' not in session:
+		return red('/login')
 	user = session['user']
 	if user == "Itane":
 		return "This account name has been renamed from 'Itane' to 'Xeophalt'. The session cookie is still showing you logged in as 'Xeophalt'. Because of this, the server will encounter errors because you are logged into an invalid account. Long story short: To continue, please <a href='/logout'>logout</a> and log back in!"
 	gr = request.args["cnael"]
 	return render_template("group.html", username=user, group=gr)
+
 
 @app.route('/google')
 def google():
