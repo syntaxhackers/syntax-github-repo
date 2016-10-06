@@ -4,13 +4,13 @@ app.secret_key = 'DFGDFHGSRGFYDTGFSDFJHHGDSHGFSGHJHGDFZSDJTYHTSGRASKUEYTAHGRAKUO
 
 getUserFromPassword = {
 	'synt': 'Espix',
-	'syntaxe': 'Itane'
+	'syntaxe': 'Xeophalt'
 }
 
 groups = [
 	{
 		"title": "CXX",
-		"who": ['Espix', 'Itane']
+		"who": ['Espix', 'Xeophalt']
 	}
 ]
 
@@ -22,6 +22,8 @@ def landing():
 	if 'user' not in session:
 		return red('/login')
 	user = session['user']
+	if user == "Itane":
+		return "This account name has been renamed from 'Itane' to 'Xeophalt'. The session cookie is still showing you logged in as 'Xeophalt'. Because of this, the server will encounter errors because you are logged into an invalid account. Long story short: To continue, please <a href='/logout'>logout</a> and log back in!"
 	return render_template("index.html", username=user, groups=groups)
 
 @app.route('/login', methods=['GET'])
@@ -40,11 +42,6 @@ def challenge():
 	else:
 		return red('/login?err=1')
 
-@app.route('/fl')
-def forcelogout():
-	session.pop('user')
-	return "you've forced logouted! <a href='/'>Click here to go back!</a>"
-
 @app.route('/logout')
 def logout():
 	session.pop('user')
@@ -55,8 +52,16 @@ def group():
 	if 'user' not in session:
 		return red('/login')
 	user = session['user']
+	if user == "Itane":
+		return "This account name has been renamed from 'Itane' to 'Xeophalt'. The session cookie is still showing you logged in as 'Xeophalt'. Because of this, the server will encounter errors because you are logged into an invalid account. Long story short: To continue, please <a href='/logout'>logout</a> and log back in!"
 	gr = request.args["cnael"]
 	return render_template("group.html", username=user, group=gr)
+
+@app.route('/google')
+def google():
+	if 'user' not in session:
+		return red('http://www.google.com/')
+	return render_template("google.html")
 
 
 @app.route('/static/<path:path>')

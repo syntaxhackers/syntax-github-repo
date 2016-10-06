@@ -77,6 +77,25 @@ body {
 	color: #AAA;
 }
 
+.ed {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	padding: 20px;
+	background-color: yellow;
+	opacity: 0.4;
+	transition: opacity 0.3s;
+	max-width: 300px;
+}
+
+.ed:hover {
+	opacity: 0.8;
+}
+
+.hidden {
+	display: none;
+}
+
 .content {
 	padding: 20px;
 }
