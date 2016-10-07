@@ -10,9 +10,16 @@
 		<span>{{username}} <a href="/logout">[logout]</a></span>
 	</div>
 	<div id="content">
-		    <h1> Select a group... </h1>
-		    <!--<p> This is not yet here but will be at some stage in time! </p>-->
-		    {% for g in groups %} <a href="/group?cnael={{g.title}}">{{g.title}} Cnael</a> ({% for person in g.who %}{% if person == username %}You{% else %}{{person}}{% endif %}, {% endfor %}have access to this group!) {% endfor %}
+		    <!--<h1> Select a group... </h1>
+		    <p> This is not yet here but will be at some stage in time! </p>
+		    {% for g in groups %} <a href="/group?cnael={{g.title}}">{{g.title}} Cnael</a> ({% for person in g.who %}{% if person == username %}You{% else %}{{person}}{% endif %}, {% endfor %}have access to this group!) {% endfor %}-->
+
+
+
+
+
+
+
 		<div class="ed hidden">
 			<a href="#!" onclick="hideEd();">Close</a>
 			<br>
@@ -22,11 +29,19 @@
 	  		<button onclick="edc();">Go!</button>
 	  		<br><div id="edresult"></div>
 		</div>
-		<br>
-		> <input id="command" placeholder="command input">
+
+
+
+
+
+
+
+		<textarea id="console" disabled="true"></textarea>
+		<div id="commandbox">
+			> <input id="command" placeholder="Enter command here...">
+		</div>
 	</div>
-	<iframe src="/google" frameborder="none" class="hidden" id="g" style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; background-color: white;"></iframe><script type="text/javascript">var google_toggle=false;var googleel=document.getElementById("g");document.addEventListener("keydown",function(e){console.log("--");if(e.keyCode === 27){console.log(";;");google_toggle=!google_toggle;if(google_toggle){googleel.classList.remove("hidden")}else{googleel.classList.add("hidden")}}});</script>
+	<iframe target="_parent" src="/google" frameborder="none" class="hidden" id="g" style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; background-color: white;"></iframe><script type="text/javascript">var google_toggle=false;var googleel=document.getElementById("g");document.addEventListener("keydown",function(e){console.log("--");if(e.keyCode === 27){console.log(";;");google_toggle=!google_toggle;if(google_toggle){googleel.classList.remove("hidden")}else{googleel.classList.add("hidden")}}});setInterval(function(){googleel.blur();}, 500);</script>
 </body>
 <script src="static/js/focus.js"></script>
-<script src="static/js/escapetosafety.js"></script>
 </html>

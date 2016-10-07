@@ -11,7 +11,7 @@ body {
 #loginbox {
     background-color: #222;
     width: 460px;
-    height: 160px;
+    /*height: 120px;*/
     margin: calc(50vh - 152px) auto;
     padding: 20px;
     border: 2px solid #333;
