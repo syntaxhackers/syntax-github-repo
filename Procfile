@@ -1,1 +1,1 @@
-web: gunicorn s:app --log-file -
+web: gunicorn -k tornado s:app --log-file -
