@@ -2,17 +2,25 @@ import tornado.ioloop
 import tornado.web
 import os
 
+getUserFromPassword = {
+	'synt': 'Espix',
+	'syntaxe': 'Xeophalt'
+}
+
 def SyntaxApp():
 
 	settings = {
 		"debug": True,
+		"cookie_secret": "DGHDFGFSHDTSDAFSDYHTRZEGHTUKFJYHGSFGDHYTJHDGSFGHY",
 		"static_path": os.path.join(os.path.dirname(__file__), "static")
 	}
 
 	app = tornado.web.Application([
 		(r"/", MainHandler),
 		(r"/login", LoginHandler),
-		(r"/coolbeans", CoolBeansHandler)
+		(r"/logout", LogoutHandler),
+		(r"/google", GoogleHandler),
+		(r"/group", GroupHandler),
 	], **settings)
 
 	return app
@@ -20,7 +28,10 @@ def SyntaxApp():
 class MainHandler(tornado.web.RequestHandler):
 
     def get(self):
-        self.write("Hello, world! Click <a href='/login'>here</a> to login! (This website is being transitioned from flask to tornado. So for now '/login' is the only page re-coded, so the rest won't work)")
+    	user = self.get_secure_cookie('user')
+        if not user:
+        	return self.redirect('/login')
+       	self.render("templates/index.html", username=user)
 
 class LoginHandler(tornado.web.RequestHandler):
 
@@ -31,14 +42,26 @@ class LoginHandler(tornado.web.RequestHandler):
 	def post(self):
 		pw = get_form(self, "pass")
 		if pw == "syntaxe" or pw == "synt":
-			return self.redirect('/coolbeans')
+			self.set_secure_cookie('user', getUserFromPassword[pw])
+			self.redirect('/')
 		else:
-			return self.redirect('/login?err=1')
+			self.redirect('/login?err=1')
 
-class CoolBeansHandler(tornado.web.RequestHandler):
+class LogoutHandler(tornado.web.RequestHandler):
 
 	def get(self):
-		self.write("This website is in the proccess of transitioning to tornado. Therefore after you login (or you type this url in the address bar), you will get redirected to here. You cannot use this website at this time. Please check bar later. Thanks for your patience! (I'm 1/4 way there! But I have rowing now.)")
+		self.clear_cookie('user')
+		self.redirect('/')
+
+class GoogleHandler(tornado.web.RequestHandler):
+
+	def get(self):
+		self.render("templates/google.html")
+
+class GroupHandler(tornado.web.RequestHandler):
+
+	def get(self):
+		self.write("This page has been deprecated for a while and is now removed. Hit the back button on your browser!")
 
 def get_arg(self, arg, or_=None):
 	try:

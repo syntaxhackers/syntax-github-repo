@@ -6,19 +6,11 @@
 </head>
 <body onload="focusToInput();">
 	<div id="header">
-		<img>
+		<img src="static/img/logo.png">
+		<b>SYNTAX</b>
 		<span>{{username}} <a href="/logout">[logout]</a></span>
 	</div>
 	<div id="content">
-		    <!--<h1> Select a group... </h1>
-		    <p> This is not yet here but will be at some stage in time! </p>
-		    {% for g in groups %} <a href="/group?cnael={{g.title}}">{{g.title}} Cnael</a> ({% for person in g.who %}{% if person == username %}You{% else %}{{person}}{% endif %}, {% endfor %}have access to this group!) {% endfor %}-->
-
-
-
-
-
-
 
 		<div class="ed hidden">
 			<a href="#!" onclick="hideEd();">Close</a>
@@ -29,12 +21,6 @@
 	  		<button onclick="edc();">Go!</button>
 	  		<br><div id="edresult"></div>
 		</div>
-
-
-
-
-
-
 
 		<textarea id="console" disabled="true"></textarea>
 		<div id="commandbox">

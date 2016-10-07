@@ -16,17 +16,24 @@ body {
 	right: 0px;
 	height: 70px;
 	border-bottom: 2px solid black;
-	background-color: #000059;
+	background-color: #222;
 	color: white;
 }
 
 #header img {
 	float: left;
-	width: 150px;
+	width: 50px;
 	height: 50px;
 	margin-top: 10px;
 	margin-left: 10px;
-	background-color: white;
+}
+
+#header b {
+	padding-left: 10px;
+	color: lightgreen;
+	font-size: 20px;
+	line-height: 70px;
+	float: left;
 }
 
 #header span {
@@ -65,11 +72,14 @@ body {
 
 
 #console {
-	width: 100%;
-	height: calc(100% - 30px);
+	width: calc(100% - 10px);
+	height: calc(100% - 40px);
+	padding: 5px;
 	border: none;
 	background-color: #111;
 	color: #EEE;
+	line-height: 18px;
+	letter-spacing: 1px;
 	vertical-align: top;
 }
 

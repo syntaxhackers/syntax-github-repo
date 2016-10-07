@@ -7,7 +7,7 @@ function focusToInput()
 	command.focus();
 	/*setTimeout(focusToInput, 1000);*/
 	autoFocusToInput();
-	log("Welcome to the terminal!\nIt is cool terminal. Anyways.\nThe two commands at the moment are 'echo <message..>' and 'goto_cxx_group'!\n'goto_cxx_group' is deprecated.\nAvoid high usage of that command.\n\nIMPORTANT NOTICE!!!!!\n - The underscore letter looks hidden in the command input box.\nIt is still there, but it looks lieks a space\nkeep this in mind but don't wory coz commands with '_' (underscore) will still work!")
+	log("You have connceted to the syntax terminal!\nType <not added yet> for a list of commands.\nThe two commands at the moment are 'echo <message..>' and 'goto_cxx_group'!\n'goto_cxx_group' is deprecated.\n\nImportant:\n - Underscores in the input box look invisible\n - The underscores are still there though!\n")
 }
 
 function autoFocusToInput()
@@ -41,7 +41,6 @@ function handleCommandSent(cmd)
 		return;
 	}
 
-	log("Command sent!");
 	handleCommand(c, args);
 }
 
