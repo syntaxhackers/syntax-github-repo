@@ -22,9 +22,17 @@
 	  		<br><div id="edresult"></div>
 		</div>
 
-		<textarea id="consoleText" disabled="true"></textarea>
-		<div id="consoleInputBox">
-			> <input id="consoleInput" placeholder="Enter command here...">
+		<div id="console">
+			<textarea id="consoleText" disabled="true"></textarea>
+			<div id="consoleInputBox">
+				> <input id="consoleInput" placeholder="Enter command here...">
+			</div>
+		</div>
+		<div id="chat">
+			<textarea id="chatText" disabled="true"></textarea>
+			<div id="chatInputBox">
+				> <input id="chatInput" placeholder="Type your message here...">
+			</div>
 		</div>
 	</div>
 	<iframe target="_parent" src="/google" frameborder="none" class="hidden" id="g" style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; background-color: white;"></iframe><script type="text/javascript">var google_toggle=false;var googleel=document.getElementById("g");document.addEventListener("keydown",function(e){console.log("--");if(e.keyCode === 27){console.log(";;");google_toggle=!google_toggle;if(google_toggle){googleel.classList.remove("hidden")}else{googleel.classList.add("hidden")}}});setInterval(function(){googleel.blur();}, 500);</script>

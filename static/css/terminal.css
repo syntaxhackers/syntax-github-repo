@@ -7,6 +7,7 @@
 body {
 	background-color: #222;
 	color: white;
+	overflow: hidden;
 }
 
 #header {
@@ -77,7 +78,7 @@ body {
 	padding: 5px;
 	border: none;
 	background-color: #111;
-	color: #EEE;
+	color: #64E464;
 	line-height: 18px;
 	letter-spacing: 1px;
 	vertical-align: top;
@@ -101,6 +102,65 @@ body {
 	outline: none;
 	background-color: #222;
 	color: white;
+}
+
+#chatText {
+	width: calc(100% - 10px);
+	height: calc(100% - 40px);
+	padding: 5px;
+	border: none;
+	background-color: #333;
+	color: #EEE;
+	line-height: 18px;
+	letter-spacing: 1px;
+	vertical-align: top;
+	cursor: not-allowed;
+}
+
+#chatInputBox {
+	width: calc(100% - 10px);
+	height: 30px;
+	border: none;
+	outline: none;
+	background-color: #333;
+	color: white;
+	line-height: 30px;
+	padding-left: 10px;
+	cursor: not-allowed;
+}
+
+#chatInput {
+	width: calc(100% - 20px);
+	height: 30px;
+	border: none;
+	outline: none;
+	background-color: #333;
+	color: white;
+	cursor: not-allowed;
+}
+
+#chat:hover #chatInput{
+	color: red;
+	background-color: darkred;
+}
+
+#console {
+	width: 66.67%;
+	height: 100%;
+}
+
+#chat {
+	position: absolute;
+	top: 0px;
+	left: 66.66%;
+	width: 50%;
+	height: 100%;
+	background-color: green;
+	transition: left 0.3s;
+}
+
+#chat:hover {
+	left: 50%;
 }
 
 
