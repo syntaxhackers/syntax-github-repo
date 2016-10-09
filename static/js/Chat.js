@@ -20,7 +20,7 @@ Chat.prototype.initializeText = function()
 
 Chat.prototype.initializeWebsockets = function()
 {
-	this.wsurl = "ws://" + location.host + "/chatsocket";
+	this.wsurl = "wss://" + location.host + "/chatsocket";
 	this.ws = new WebSocket(this.wsurl);
 	
 	this.ws.onopen = this.handleWebsocketOpening.bind(this);
