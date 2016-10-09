@@ -1,5 +1,6 @@
 import tornado.ioloop
 import tornado.web
+import tornado.websocket
 import os
 
 getUserFromPassword = {
@@ -21,6 +22,7 @@ def SyntaxApp():
 		(r"/logout", LogoutHandler),
 		(r"/google", GoogleHandler),
 		(r"/group", GroupHandler),
+		(r"/chatsocket", ChatWSHandler),
 	], **settings)
 
 	return app
@@ -62,6 +64,17 @@ class GroupHandler(tornado.web.RequestHandler):
 
 	def get(self):
 		self.write("This page has been deprecated for a while and is now removed. Hit the back button on your browser!")
+
+class ChatWSHandler(tornado.websocket.WebSocketHandler):
+    def open(self):
+        print("Some person has connected to ze websocket!")
+
+    def on_message(self, message):
+    	print("Ze pirate sneaked some preciousness to the cabin!")
+        self.write_message(u"You said: " + message)
+
+    def on_close(self):
+        print("Ze pirate haz disconnected from ze websocket!")
 
 def get_arg(self, arg, or_=None):
 	try:

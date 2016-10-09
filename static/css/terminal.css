@@ -139,28 +139,23 @@ body {
 	cursor: not-allowed;
 }
 
-#chat:hover #chatInput{
-	color: red;
-	background-color: darkred;
-}
-
 #console {
-	width: 66.67%;
+	width: 80%;
 	height: 100%;
 }
 
 #chat {
 	position: absolute;
 	top: 0px;
-	left: 66.66%;
-	width: 50%;
+	left: 80%;
+	width: 33.33%;
 	height: 100%;
 	background-color: green;
 	transition: left 0.3s;
 }
 
-#chat:hover {
-	left: 50%;
+#chat.expanded {
+	left: 66.66%;
 }
 
 
