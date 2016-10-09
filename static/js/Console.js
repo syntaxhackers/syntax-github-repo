@@ -71,7 +71,13 @@ Console.prototype.sendCommandFromInput = function()
 
 Console.prototype.log = function(text)
 {
-	this.text.innerHTML += text + "\n"
+	console.log("MARBLES",this.text.scrollTop,"===",this.text.scrollHeight,"-",this.text.offsetHeight,"(",this.text.scrollHeight-this.text.offsetHeight,")")
+	var scrollToBottom = false;
+	if (this.text.scrollTop === (this.text.scrollHeight - this.text.offsetHeight))
+		scrollToBottom = true;
+	this.text.innerHTML += text + "\n";
+	if (scrollToBottom)
+		this.text.scrollTop = this.text.scrollHeight;
 }
 
 Console.prototype.clear = function()

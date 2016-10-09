@@ -20,8 +20,19 @@ Chat.prototype.initializeText = function()
 
 Chat.prototype.initializeWebsockets = function()
 {
-	this.wsurl = "wss://" + location.host + "/chatsocket";
-	this.ws = new WebSocket(this.wsurl);
+	try
+	{
+		this.wsurl = "ws://" + location.host + "/chatsocket";
+		this.ws = new WebSocket(this.wsurl);
+	}
+	catch(e)
+	{
+		console.log("Error while connecting to websockets with non-secure connection!")
+		console.log(e)
+		console.log("Connecting to secure connection now...")
+		this.wsurl = "wss://" + location.host + "/chatsocket";
+		this.ws = new WebSocket(this.wsurl);	
+	}
 	
 	this.ws.onopen = this.handleWebsocketOpening.bind(this);
 	this.ws.onmessage = this.handleWebsocketMessage.bind(this);
@@ -80,7 +91,12 @@ Chat.prototype.sendMessage = function(message)
 
 Chat.prototype.logMessage = function(text)
 {
-	this.text.innerHTML += text + "\n"
+	var scrollToBottom = false;
+	if (this.text.scrollTop === (this.text.scrollHeight - this.text.offsetHeight))
+		scrollToBottom = true;
+	this.text.innerHTML += text + "\n";
+	if (scrollToBottom)
+		this.text.scrollTop = this.text.scrollHeight;
 }
 
 Chat.prototype.clearMessages = function()
