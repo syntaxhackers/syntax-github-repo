@@ -9,7 +9,13 @@ function Chat()
 
 Chat.prototype.initialize = function()
 {
+	this.initializeText();
 	this.initializeWebsockets();
+}
+
+Chat.prototype.initializeText = function()
+{
+	this.logMessage("Type '/clear' to clear the screen!\n");
 }
 
 Chat.prototype.initializeWebsockets = function()
@@ -45,18 +51,31 @@ Chat.prototype.sendCommandFromInput = function()
 
 Chat.prototype.handleWebsocketOpening = function()
 {
-	this.logMessage("Connected to chat...");
+	this.logMessage("[Client] Connected with server!");
 }
 
 Chat.prototype.handleWebsocketMessage = function(evt)
 {
-	this.logMessage("[Message recieved] Got some nice data here! " + evt.data);
+	this.logMessage(evt.data);
 }
 
 Chat.prototype.sendMessage = function(message)
 {
-	this.logMessage("[Message sent] Sent message! Should recieve it shortly!")
-	this.ws.send(message);
+	if (message.startsWith("/"))
+	{
+		if (message == "/clear")
+		{
+			this.clearMessages();
+		}
+		else
+		{
+			this.logMessage("[Client] Invalid command!")
+		}
+	}
+	else
+	{
+		this.ws.send(message);	
+	}
 }
 
 Chat.prototype.logMessage = function(text)
@@ -67,4 +86,5 @@ Chat.prototype.logMessage = function(text)
 Chat.prototype.clearMessages = function()
 {
 	this.text.innerHTML = "";
+	this.initializeText();
 }
