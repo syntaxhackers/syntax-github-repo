@@ -67,20 +67,34 @@ class GroupHandler(tornado.web.RequestHandler):
 
 class ChatWSHandler(tornado.websocket.WebSocketHandler):
 
-	cons = [];
+	cons = []
+	users = []
 
 	def open(self):
 		self.cons.append(self)
-		self.write_message("[Server] Connected with client!")
+		user = self.get_secure_cookie('user')
+		if not user:
+			return
+		self.users.append(user)
+		self.write_message("[Server] Connected with client!\n")
+		write_message_all(self, "Server: " + user + " has connected to chat")
 
 	def on_message(self, message):
 		user = self.get_secure_cookie('user')
 		if not user:
 			return
+		if message == "/list":
+			self.write_message("Server: " + ", ".join(self.users) + " are connected at the moment")
+			return
 		write_message_all(self, user + ": " + message)
 
 	def on_close(self):
 		self.cons.remove(self)
+		user = self.get_secure_cookie('user')
+		if not user:
+			return
+		self.users.remove(user)
+		write_message_all(self, "Server: " + user + " has disconnected!")
 
 def get_arg(self, arg, or_=None):
 	try:

@@ -15,7 +15,8 @@ Chat.prototype.initialize = function()
 
 Chat.prototype.initializeText = function()
 {
-	this.logMessage("Type '/clear' to clear the screen!\n");
+	this.logMessage("Type '/clear' to clear the screen!");
+	this.logMessage("Type '/list' to list the connected users!\n")
 }
 
 Chat.prototype.initializeWebsockets = function()
@@ -77,6 +78,10 @@ Chat.prototype.sendMessage = function(message)
 		if (message == "/clear")
 		{
 			this.clearMessages();
+		}
+		else if (message == "/list")
+		{
+			this.ws.send("/list")
 		}
 		else
 		{
