@@ -71,7 +71,6 @@ Console.prototype.sendCommandFromInput = function()
 
 Console.prototype.log = function(text)
 {
-	console.log("MARBLES",this.text.scrollTop,"===",this.text.scrollHeight,"-",this.text.offsetHeight,"(",this.text.scrollHeight-this.text.offsetHeight,")")
 	var scrollToBottom = false;
 	if (this.text.scrollTop === (this.text.scrollHeight - this.text.offsetHeight))
 		scrollToBottom = true;

@@ -86,6 +86,8 @@ class ChatWSHandler(tornado.websocket.WebSocketHandler):
 		if message == "/list":
 			self.write_message("Server: " + ", ".join(self.users) + " are connected at the moment")
 			return
+		elif message == "/active":
+			return
 		write_message_all(self, user + ": " + message)
 
 	def on_close(self):

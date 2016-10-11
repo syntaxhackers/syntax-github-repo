@@ -37,6 +37,8 @@ Chat.prototype.initializeWebsockets = function()
 	
 	this.ws.onopen = this.handleWebsocketOpening.bind(this);
 	this.ws.onmessage = this.handleWebsocketMessage.bind(this);
+
+	setInterval(function(){this.ws.send("/active")}.bind(this), 20000)
 }
 
 Chat.prototype.focusInput = function()
