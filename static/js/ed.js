@@ -109,7 +109,60 @@ function getEDEncrypted(text)
 
 function getEDDecrypted(text)
 {
-	return "Decrypting Not Done Yet! You Can Use Encrypting Though!";
+	var c = thethethec;
+	var C = thethetheC;
+	var v = thethethev;
+	var V = thethetheV;
+
+	var ns = "";
+
+	for (var i = 0; i < text.length; i ++)
+	{
+		console.log("ED: found char")
+		var char = text[i];
+
+		if (c.includes(char))
+		{
+			var n = c.indexOf(char);
+			n += 3;
+			if (n >= c.length)
+				n -= c.length;
+			console.log("decrypting it's in c so we've got that index of " + n + " after adding 3 and subtracting c.length!")
+			ns += c[n];
+		}
+		else if (C.includes(char))
+		{
+			n = C.indexOf(char);
+			n += 3;
+			if (n >= C.length)
+				n -= C.length;
+			ns += C[n];
+		}
+		else if (v.includes(char))
+		{	
+			n = v.indexOf(char);
+			n -= 3;
+			if (n < 0)
+				n += v.length;
+			ns += v[n];
+		}
+		else if (V.includes(char))
+		{
+			n = V.indexOf(char);
+			n -= 3;
+			if (n < 0)
+				n += V.length;
+			ns += V[n];
+		}
+		else
+		{
+			ns += char
+		}
+	}
+
+	console.log("ED ns:", ns)
+
+	return ns;
 }
 
 function getCheckedRadioButton(name)
